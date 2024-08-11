@@ -1,0 +1,1461 @@
+<!DOCTYPE html>
+<!-- saved from url=(0098)https://martins3.github.io/My-Linux-Config/docs/nvim.html#%E5%AE%89%E8%A3%85%E5%90%84%E7%A7%8D-lsp -->
+<html lang="en-US"><plasmo-csui><template shadowrootmode="open"><div id="plasmo-shadow-container" style="z-index: 2147483647; position: relative;"><div id="plasmo-overlay-0" class="plasmo-csui-container" style="display: flex; position: absolute; top: 0px; left: 0px;"><div style="display: none;"></div></div></div></template></plasmo-csui><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><link id="giscus-css" rel="stylesheet" href="./2023 年 vim 的 C_C++ 配置 _ 工欲善其事,必先利其器_files/default.css">
+    
+
+<!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>2023 年 vim 的 C/C++ 配置 | 工欲善其事,必先利其器</title>
+<meta name="generator" content="Jekyll v3.9.5">
+<meta property="og:title" content="2023 年 vim 的 C/C++ 配置">
+<meta property="og:locale" content="en_US">
+<meta name="description" content=":clap: Modern neovim configuration based on native lsp">
+<meta property="og:description" content=":clap: Modern neovim configuration based on native lsp">
+<link rel="canonical" href="https://martins3.github.io/My-Linux-Config/docs/nvim.html">
+<meta property="og:url" content="https://martins3.github.io/My-Linux-Config/docs/nvim.html">
+<meta property="og:site_name" content="工欲善其事,必先利其器">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary">
+<meta property="twitter:title" content="2023 年 vim 的 C/C++ 配置">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","description":":clap: Modern neovim configuration based on native lsp","headline":"2023 年 vim 的 C/C++ 配置","url":"https://martins3.github.io/My-Linux-Config/docs/nvim.html"}</script>
+<!-- End Jekyll SEO tag -->
+
+    <link rel="preconnect" href="https://fonts.gstatic.com/">
+    <link rel="preload" href="./2023 年 vim 的 C_C++ 配置 _ 工欲善其事,必先利其器_files/css" as="style" type="text/css" crossorigin="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#157878">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="stylesheet" href="./2023 年 vim 的 C_C++ 配置 _ 工欲善其事,必先利其器_files/style.css">
+    <!-- start custom head snippets, customize with your own _includes/head-custom.html file -->
+
+<!-- Setup Google Analytics -->
+
+
+
+<!-- You can set your favicon here -->
+<!-- link rel="shortcut icon" type="image/x-icon" href="/My-Linux-Config/favicon.ico" -->
+
+<!-- end custom head snippets -->
+
+  <script charset="utf-8" src="./2023 年 vim 的 C_C++ 配置 _ 工欲善其事,必先利其器_files/tweet.d7aeb21a88e025d2ea5f5431a103f586.js"></script></head>
+  <body>
+    <a id="skip-to-content" href="https://martins3.github.io/My-Linux-Config/docs/nvim.html#content">Skip to the content.</a>
+
+    <header class="page-header" role="banner">
+      <h1 class="project-name">2023 年 vim 的 C/C++ 配置</h1>
+      <h2 class="project-tagline">:clap: Modern neovim configuration based on native lsp</h2>
+      
+        <a href="https://github.com/Martins3/My-Linux-Config" class="btn">View on GitHub</a>
+      
+      
+    </header>
+
+    <main id="content" class="main-content" role="main">
+      <h1 id="2023-年-vim-的-cc-配置">2023 年 vim 的 C/C++ 配置</h1>
+
+<!-- vim-markdown-toc GitLab -->
+
+<ul>
+  <li><a href="https://martins3.github.io/My-Linux-Config/docs/nvim.html#%E5%89%8D%E8%A8%80">前言</a></li>
+  <li><a href="https://martins3.github.io/My-Linux-Config/docs/nvim.html#%E5%85%A5%E9%97%A8-vim">入门 vim</a></li>
+  <li><a href="https://martins3.github.io/My-Linux-Config/docs/nvim.html#language-server-protocal">Language Server Protocal</a></li>
+  <li><a href="https://martins3.github.io/My-Linux-Config/docs/nvim.html#async">Async</a></li>
+  <li><a href="https://martins3.github.io/My-Linux-Config/docs/nvim.html#treesitter">Treesitter</a></li>
+  <li><a href="https://martins3.github.io/My-Linux-Config/docs/nvim.html#%E4%B8%BA%E4%BB%80%E4%B9%88%E6%88%91%E4%B8%8D%E5%86%8D%E4%BD%BF%E7%94%A8-cocnvim">为什么我不再使用 coc.nvim</a></li>
+  <li><a href="https://martins3.github.io/My-Linux-Config/docs/nvim.html#%E4%B8%BA%E4%BB%80%E4%B9%88%E5%BA%94%E8%AF%A5%E4%BD%BF%E7%94%A8-neovim-%E8%80%8C%E4%B8%8D%E6%98%AF-vim">为什么应该使用 neovim 而不是 vim</a></li>
+  <li><a href="https://martins3.github.io/My-Linux-Config/docs/nvim.html#%E5%AE%89%E8%A3%85">安装</a>
+    <ul>
+      <li><a href="https://martins3.github.io/My-Linux-Config/docs/nvim.html#%E5%AE%89%E8%A3%85%E5%90%84%E7%A7%8D%E4%BE%9D%E8%B5%96">安装各种依赖</a></li>
+      <li><a href="https://martins3.github.io/My-Linux-Config/docs/nvim.html#%E5%AE%89%E8%A3%85-nvim">安装 nvim</a></li>
+      <li><a href="https://martins3.github.io/My-Linux-Config/docs/nvim.html#%E5%AE%89%E8%A3%85-nerdfonts">安装 nerdfonts</a></li>
+      <li><a href="https://martins3.github.io/My-Linux-Config/docs/nvim.html#%E5%AE%89%E8%A3%85-bear">安装 bear</a></li>
+      <li><a href="https://martins3.github.io/My-Linux-Config/docs/nvim.html#%E5%AE%89%E8%A3%85%E5%90%84%E7%A7%8D-lsp">安装各种 lsp</a></li>
+      <li><a href="https://martins3.github.io/My-Linux-Config/docs/nvim.html#%E5%AE%89%E8%A3%85%E6%9C%AC%E9%85%8D%E7%BD%AE">安装本配置</a></li>
+      <li><a href="https://martins3.github.io/My-Linux-Config/docs/nvim.html#%E6%89%8B%E5%8A%A8%E7%BC%96%E8%AF%91%E4%B8%80%E4%BA%9B%E6%8F%92%E4%BB%B6">手动编译一些插件</a></li>
+      <li><a href="https://martins3.github.io/My-Linux-Config/docs/nvim.html#checkhealth-%E6%A3%80%E6%9F%A5">checkhealth 检查</a></li>
+    </ul>
+  </li>
+  <li><a href="https://martins3.github.io/My-Linux-Config/docs/nvim.html#%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C">基本操作</a>
+    <ul>
+      <li><a href="https://martins3.github.io/My-Linux-Config/docs/nvim.html#%E9%80%80%E5%87%BA">退出</a></li>
+      <li><a href="https://martins3.github.io/My-Linux-Config/docs/nvim.html#%E5%A4%8D%E5%88%B6%E7%B2%98%E8%B4%B4">复制粘贴</a></li>
+      <li><a href="https://martins3.github.io/My-Linux-Config/docs/nvim.html#%E7%AC%A6%E5%8F%B7%E6%90%9C%E7%B4%A2">符号搜索</a></li>
+      <li><a href="https://martins3.github.io/My-Linux-Config/docs/nvim.html#%E5%AE%9A%E4%B9%89%E5%92%8C%E5%BC%95%E7%94%A8">定义和引用</a></li>
+      <li><a href="https://martins3.github.io/My-Linux-Config/docs/nvim.html#%E6%B3%A8%E9%87%8A">注释</a></li>
+      <li><a href="https://martins3.github.io/My-Linux-Config/docs/nvim.html#%E6%A0%BC%E5%BC%8F%E5%8C%96">格式化</a></li>
+      <li><a href="https://martins3.github.io/My-Linux-Config/docs/nvim.html#%E9%87%8D%E5%91%BD%E5%90%8D">重命名</a></li>
+      <li><a href="https://martins3.github.io/My-Linux-Config/docs/nvim.html#%E5%AD%97%E7%AC%A6%E4%B8%B2%E6%90%9C%E7%B4%A2%E5%92%8C%E6%9B%BF%E6%8D%A2">字符串搜索和替换</a></li>
+      <li><a href="https://martins3.github.io/My-Linux-Config/docs/nvim.html#file-tree">file tree</a></li>
+      <li><a href="https://martins3.github.io/My-Linux-Config/docs/nvim.html#window">window</a></li>
+      <li><a href="https://martins3.github.io/My-Linux-Config/docs/nvim.html#buffer">buffer</a></li>
+      <li><a href="https://martins3.github.io/My-Linux-Config/docs/nvim.html#%E6%96%87%E4%BB%B6%E6%90%9C%E7%B4%A2">文件搜索</a></li>
+      <li><a href="https://martins3.github.io/My-Linux-Config/docs/nvim.html#%E5%AF%BC%E8%88%AA">导航</a></li>
+      <li><a href="https://martins3.github.io/My-Linux-Config/docs/nvim.html#%E4%BB%A3%E7%A0%81%E6%AE%B5">代码段</a></li>
+      <li><a href="https://martins3.github.io/My-Linux-Config/docs/nvim.html#%E4%BB%A3%E7%A0%81%E8%A1%A5%E5%85%A8">代码补全</a></li>
+      <li><a href="https://martins3.github.io/My-Linux-Config/docs/nvim.html#git-%E9%9B%86%E6%88%90">Git 集成</a></li>
+      <li><a href="https://martins3.github.io/My-Linux-Config/docs/nvim.html#github-%E9%9B%86%E6%88%90">Github 集成</a></li>
+      <li><a href="https://martins3.github.io/My-Linux-Config/docs/nvim.html#%E8%B0%83%E8%AF%95">调试</a></li>
+      <li><a href="https://martins3.github.io/My-Linux-Config/docs/nvim.html#vim-cmdline-%E8%87%AA%E5%8A%A8%E8%A1%A5%E5%85%A8">vim cmdline 自动补全</a></li>
+      <li><a href="https://martins3.github.io/My-Linux-Config/docs/nvim.html#%E7%BB%88%E7%AB%AF">终端</a></li>
+      <li><a href="https://martins3.github.io/My-Linux-Config/docs/nvim.html#%E4%B8%80%E9%94%AE%E8%BF%90%E8%A1%8C%E4%BB%A3%E7%A0%81">一键运行代码</a></li>
+      <li><a href="https://martins3.github.io/My-Linux-Config/docs/nvim.html#%E4%B8%80%E9%94%AE%E6%B3%A8%E9%87%8A%E4%BB%A3%E7%A0%81">一键注释代码</a></li>
+      <li><a href="https://martins3.github.io/My-Linux-Config/docs/nvim.html#markdown-%E9%9B%86%E6%88%90">markdown 集成</a></li>
+      <li><a href="https://martins3.github.io/My-Linux-Config/docs/nvim.html#session">Session</a></li>
+      <li><a href="https://martins3.github.io/My-Linux-Config/docs/nvim.html#%E5%BF%AB%E9%80%9F%E7%A7%BB%E5%8A%A8">快速移动</a></li>
+      <li><a href="https://martins3.github.io/My-Linux-Config/docs/nvim.html#%E8%BE%93%E5%85%A5%E6%B3%95%E8%87%AA%E5%8A%A8%E5%88%87%E6%8D%A2">输入法自动切换</a></li>
+    </ul>
+  </li>
+  <li><a href="https://martins3.github.io/My-Linux-Config/docs/nvim.html#%E6%9C%AC%E9%85%8D%E7%BD%AE%E6%BA%90%E4%BB%A3%E7%A0%81%E8%A7%A3%E9%87%8A">本配置源代码解释</a></li>
+  <li><a href="https://martins3.github.io/My-Linux-Config/docs/nvim.html#faq">FAQ</a></li>
+  <li><a href="https://martins3.github.io/My-Linux-Config/docs/nvim.html#vim-%E7%9A%84%E5%B0%8F%E6%8A%80%E5%B7%A7">vim 的小技巧</a></li>
+  <li><a href="https://martins3.github.io/My-Linux-Config/docs/nvim.html#%E5%80%BC%E5%BE%97%E4%B8%80%E7%9C%8B%E7%9A%84%E9%85%8D%E7%BD%AE">值得一看的配置</a></li>
+  <li><a href="https://martins3.github.io/My-Linux-Config/docs/nvim.html#%E5%80%BC%E5%BE%97%E5%85%B3%E6%B3%A8%E7%9A%84%E6%8F%92%E4%BB%B6">值得关注的插件</a></li>
+  <li><a href="https://martins3.github.io/My-Linux-Config/docs/nvim.html#%E6%9C%89%E8%B6%A3%E7%9A%84%E6%8F%92%E4%BB%B6">有趣的插件</a></li>
+  <li><a href="https://martins3.github.io/My-Linux-Config/docs/nvim.html#%E5%AD%A6%E4%B9%A0">学习</a></li>
+  <li><a href="https://martins3.github.io/My-Linux-Config/docs/nvim.html#%E6%89%BE%E8%B5%84%E6%BA%90">找资源</a></li>
+  <li><a href="https://martins3.github.io/My-Linux-Config/docs/nvim.html#%E9%AB%98%E7%BA%A7%E8%AF%9D%E9%A2%98">高级话题</a></li>
+  <li><a href="https://martins3.github.io/My-Linux-Config/docs/nvim.html#%E8%A1%8D%E7%94%9F">衍生</a></li>
+</ul>
+
+<!-- vim-markdown-toc -->
+
+<table>
+  <thead>
+    <tr>
+      <th>整体效果</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><img src="./2023 年 vim 的 C_C++ 配置 _ 工欲善其事,必先利其器_files/overview.png"></td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="前言">前言</h2>
+
+<div class="twitter-tweet twitter-tweet-rendered" style="display: flex; max-width: 550px; width: 100%; margin-top: 10px; margin-bottom: 10px;"><iframe id="twitter-widget-0" scrolling="no" frameborder="0" allowtransparency="true" allowfullscreen="true" class="" title="X Post" src="./2023 年 vim 的 C_C++ 配置 _ 工欲善其事,必先利其器_files/Tweet.html" style="position: static; visibility: visible; width: 550px; height: 369px; display: block; flex-grow: 1;" data-tweet-id="1501389100074500098"></iframe></div>
+<script async="" src="./2023 年 vim 的 C_C++ 配置 _ 工欲善其事,必先利其器_files/widgets.js" charset="utf-8"></script>
+
+<p>本文的目标观众:</p>
+
+<ol>
+  <li>vim 新手</li>
+  <li>正在使用 <a href="http://cscope.sourceforge.net/">cscope</a> / <a href="https://github.com/universal-ctags/ctags">ctags</a> / <a href="https://github.com/SpaceVim/SpaceVim/issues/4389">gtags</a> / <a href="https://github.com/preservim/nerdtree">nerdtree</a> / <a href="https://github.com/ycm-core/YouCompleteMe">YCM</a> 的 vimer</li>
+  <li>不了解 <a href="https://microsoft.github.io/language-server-protocol/">Language Server Protocal</a> (下简称 lsp ) 等新特性的 vimer</li>
+  <li>没有使用过 <a href="https://github.com/nvim-treesitter/nvim-treesitter">Treesitter</a></li>
+</ol>
+
+<p>本项目不是在于要大家使用我的这个配置，而是让大家知道 vim 正在飞速进步 ，拥抱 lsp, async, treesitter 等新特性，vim 一定的比你想象的酷炫。</p>
+
+<p>任何问题, 欢迎<a href="https://github.com/Martins3/My-Linux-config/issues?q=is%3Aissue">issue</a>。</p>
+
+<h2 id="入门-vim">入门 vim</h2>
+
+<p>其实关于 vim 的基本知识教程有很多，这里我推荐两个网站</p>
+
+<ol>
+  <li><a href="https://www.openvim.com/tutorial.html">openvim</a>: 交互式的学习 vim</li>
+  <li><a href="https://vim.rtorr.com/lang/zh_cn">vim check sheet</a>: vim 常用快捷键清单</li>
+</ol>
+
+<p>如果完全没有基础，建议使用 openvim 打牢基础之后，然后就直接将 vim 用于实战中间，因为这些快捷键都是肌肉记忆，无非多熟悉一下而已。当你知道 hjkl 之类的操作之后，之后可以
+使用 vim check sheet 来强化补充一下，不要指望一次全部背下来，也没有必要全部记住，一次学几个，学最能提高你工作效率的那几个。</p>
+
+<p>vim 的学习曲线陡峭主要就是在最开始的 hjkl 这些快捷键的记忆，但是最多几天，之后就学习曲线就非常平缓了，无非是装装插件，重新映射一下快捷键之类的事情。实不相瞒，我用 vim 好几年，至今不会写超过 5 行的 vimscript 。</p>
+
+<h2 id="language-server-protocal">Language Server Protocal</h2>
+
+<p>lsp 是微软开发 VSCode 提出的，其定义了一套标准编辑器和 language server 之间的规范。</p>
+
+<ol>
+  <li>不同的语言需要不同的 Language Server，比如 C/C++ 需要 <a href="https://clangd.llvm.org/">clangd</a>, Rust 语言采用 <a href="https://github.com/rust-analyzer/rust-analyzer">rust analyzer</a>, 官方列举了很多 <a href="https://microsoft.github.io/language-server-protocol/implementors/servers/">lsp servers</a>。</li>
+  <li>不同的编辑按照 lsp 的规范和 language server 通信</li>
+</ol>
+
+<p>他们大致的关系如下, 通过统一的接口，大大的减少了重复开发，lsp 定义的查找引用，定义，格式化代码功能只需要安装对应的 language server 支持就是开箱即用，再也无需从各种插件哪里东拼西凑这些功能。</p>
+
+<pre><code class="language-txt">+------------------------+    +---------------+
+|      Editor            |    |Language Server|
++------------------------+    +---------------+
+|     Emacs              |    |               |
+|     Neovim             +--&gt; |      clangd   |
+|     Visual Studio Code |    |               |
++------------------------+    +---------------+
+</code></pre>
+
+<h2 id="async">Async</h2>
+
+<p>async 的效果当然就是快，当一个插件存在其 async 的版本，那么毫无疑问，就应该使用 async 版本。</p>
+
+<p>文件树插件，我之前一直都是使用 nerdtree 的，直到有一天我用 vim 打开 Linux kernel，我发现光标移动都非常的困难，我开始以为是终端的性能问题，但是在 htop 中发现 vim 的 CPU 利用率很高，
+直到将 nerdtree 替换为 <a href="https://github.com/kyazdani42/nvim-tree.lua">nvim-tree</a> 之类的</p>
+
+<p>关于 nerdtree 为什么不支持 async 可以参考 <a href="https://github.com/preservim/nerdtree/issues/1170">why nerdtree doesn’t support async</a>。</p>
+
+<h2 id="treesitter">Treesitter</h2>
+
+<p><a href="https://github.com/tree-sitter/tree-sitter">treesitter</a> 通过语法分析，而不是词法分析，这让很多事情都非常精确。</p>
+
+<ol>
+  <li>更加的智能和高效的高亮。原始的 vim 中只能按照正则匹配来高亮关键字，但是 treesitter 可以区分什么是函数，成员，类，宏等定义。</li>
+  <li>如果想要跳转到函数头，在 vim 中使用默认提供 <a href="https://stackoverflow.com/questions/2109503/how-to-jump-to-the-beginning-of-the-current-function-body-in-vim"><code class="language-plaintext highlighter-rouge">[</code><code class="language-plaintext highlighter-rouge">m</code></a>，但是这是根据词法规则实现的，要么跳转到第一个匹配的 { ，要么跳转到最外层的 { ，因此
+对于文件的格式有要求，但是如果使用上 <a href="https://github.com/nvim-treesitter/nvim-treesitter-textobjects">nvim-treesitter-textobjects</a>，这个问题就不存在了，你总是可以跳转到函数的开始位置。</li>
+  <li>精确的拼写检查。<a href="https://www.reddit.com/r/neovim/comments/x7k7r7/spellsitter_merged_to_neovim_core/">spellsitter</a> 可以让拼写检查仅仅检查注释中内容，而默认的检查会检查所有的单词，包括各种缩写函数名，那些检查大部分都是误报。</li>
+</ol>
+
+<p>通过 Treesitter ，<a href="https://github.com/ThePrimeagen/refactoring.nvim">有的插件</a>可以做到超乎想象的事情，甚至是将《重构，改善既有代码》的操作集成到 vim 中。</p>
+
+<h2 id="为什么我不再使用-cocnvim">为什么我不再使用 coc.nvim</h2>
+
+<p>最开始的时候，vim / neovim 都是没有内置 lsp 功能的，在 vim 下想要使用 lsp 就要靠 <a href="https://github.com/neoclide/coc.nvim">coc.nim</a> 这种插件，类似的工具官方列举了很多 <a href="https://microsoft.github.io/language-server-protocol/implementors/tools/">lsp tools</a>,
+coc.nvim 的宗旨就是<em>full language server protocol support as VSCode</em>, 虽然后来 neovim 内置了，但是到目前为止，我还是认为内置的 lsp 和 coc.nvim 的完善度还是存在一些差距。
+reddit 上的一些老哥目前<a href="https://www.reddit.com/r/neovim/comments/p3ji6d/nvimlspconfig_or_cocnvim/">认为 coc.nvim 的自动补全做的更好，开箱即用。</a></p>
+
+<p>但是到了 2023 年，虽然我认为 fannheyward 的 <a href="https://fann.im/blog/2021/08/01/thoughts-on-coc.nvim/">Thoughts on coc.nvim</a> 分析地很深刻，但是现在 native lsp 的易用程度和 coc.nvim 已经很小了，<a href="https://www.reddit.com/r/neovim/comments/14pvyo4/why_is_nobody_using_coc_anymore/">但是社区的人几乎都倒向了 native lsp</a>。
+虽然充满了不舍，但是还是从 coc.nvim 切换为 native lsp 了。对于使用上来说，几乎没有区别，只是现在配置内容稍微变化了一些。</p>
+
+<p>当然，也可能我端午节的时候太清闲了。</p>
+
+<h2 id="为什么应该使用-neovim-而不是-vim">为什么应该使用 neovim 而不是 vim</h2>
+
+<p>其实 vim 还有一个祖先叫做 vi, vim 全称为 vi improve, 但是 vim 在很长一段时间更新的不大，neovim 的作者提交了一个很大的 patch 给 vim，但是被 vim 的作者拒绝了，
+因为这个 patch 太大了，改动太多，然后 neovim 的作者就开始自立门户搞了一个 neovim，很多 vim 特性都是被 neovim 逼出来的，
+<a href="https://www.contextualize.ai/mpereira/20-years-of-vim-ef9acae9">neovim 推出之后，vim 的更新速度大大加快了</a>
+总体来说，neovim 相较于 vim :</p>
+
+<ol>
+  <li>更新更快, 添加的新功能更多，例如内置 lsp, lua 语言的支持。</li>
+  <li>社区更活跃。这个你对比一下 vim 和 neovim 的开发者数量就可以知道了，vim 很长时间都只有一个人开发的。</li>
+  <li>很多插件依赖 neovim 新特性，或者只能在 vim 上勉强使用。</li>
+  <li>neovim 支持 lua 语言配置。</li>
+</ol>
+
+<p>根据 stackoverflow 的报告指出 <a href="https://insights.stackoverflow.com/survey/2021#section-most-loved-dreaded-and-wanted-collaboration-tools">Neovim is the most loved editor it is the 10th most wanted editor</a></p>
+
+<h2 id="安装">安装</h2>
+
+<p>安装成功需要注意两点:</p>
+
+<ol>
+  <li><strong>代理</strong> : 实现代理的方法在 github 上有很多教程。如果你无法解决<strong>终端</strong>和<strong>git</strong>的代理，这个配置几乎不可能安装成功。</li>
+  <li>软件版本 : 有的 Linux Distribution 为了稳定性，是锁版本的，例如 Ubuntu，一旦推出 22.04 之后，其上的软件版本几乎都是不变的，这意味着有的软件没有被 apt 收录进去，有的版本太低，这导致有的几个软件需要手动编译。
+当然滚动更新的 Linux Distribution，类似 Arch 或者 Fedora 一般不会存在这些问题。</li>
+</ol>
+
+<p>整个环境的安装主要是 neovim ccls，下面说明一下安装主要步骤以及其需要注意的一些小问题。对于新手，安装过程并不简单，遇到问题多 Google，或者 issue 直接和我讨论。
+虽然我自己不用 Ubuntu，考虑到大多数新手使用的是 Ubuntu ，这里给出一个基于 Ubuntu 的安装介绍。</p>
+
+<h3 id="安装各种依赖">安装各种依赖</h3>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>apt <span class="nb">install</span> <span class="nt">-y</span> gcc wget iputils-ping python3-pip git bear tig shellcheck ripgrep
+
+<span class="c"># 安装 neovim 的各种依赖 https://github.com/neovim/neovim/wiki/Building-Neovim#build-prerequisites</span>
+<span class="nb">sudo </span>apt <span class="nb">install</span> <span class="nt">-y</span> ninja-build gettext libtool libtool-bin autoconf automake cmake g++ pkg-config unzip curl doxygen
+</code></pre></div></div>
+
+<h3 id="安装-nvim">安装 nvim</h3>
+
+<ul>
+  <li>当前配置需要 neovim 0.9 以上的版本，手动安装<a href="https://github.com/neovim/neovim/wiki/Installing-Neovim">参考这里</a></li>
+</ul>
+
+<p>其实也就是下面三条命令</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git clone <span class="nt">--depth</span><span class="o">=</span>1 https://github.com/neovim/neovim <span class="o">&amp;&amp;</span> <span class="nb">cd </span>neovim
+make <span class="nv">CMAKE_BUILD_TYPE</span><span class="o">=</span>Release <span class="nt">-j8</span>
+<span class="nb">sudo </span>make <span class="nb">install</span>
+</code></pre></div></div>
+
+<h3 id="安装-nerdfonts">安装 nerdfonts</h3>
+
+<p>先<a href="https://www.nerdfonts.com/font-downloads">下载</a>，再<a href="https://gist.github.com/matthewjberger/7dd7e079f282f8138a9dc3b045ebefa0">安装</a>，最后设置就好了。</p>
+
+<p>注意，需要修改 terminal 的字体为 nerdfonts 中才不会出现乱码。</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>wget https://github.com/ryanoasis/nerd-fonts/releases/download/v3.0.2/Hasklig.zip
+unzip Hasklig.zip <span class="nt">-d</span> ~/.fonts
+fc-cache <span class="nt">-fv</span>
+</code></pre></div></div>
+
+<h3 id="安装-bear">安装 bear</h3>
+
+<p>clangd 需要通过 <a href="https://github.com/rizsotto/Bear">bear</a> 生成的 <code class="language-plaintext highlighter-rouge">compile_commands.json</code> 来构建索引数据。</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>apt <span class="nb">install </span>bear
+</code></pre></div></div>
+
+<p>注：使用 bear 生成 <code class="language-plaintext highlighter-rouge">compile_commands.json</code> 是一种通用的方法，但是不同的 build 工具和项目还存在一些捷径可走:</p>
+
+<ol>
+  <li>linux 内核使用自带的脚本 <code class="language-plaintext highlighter-rouge">scripts/clang-tools/gen_compile_commands.py</code>，具体可以参考<a href="https://patchwork.kernel.org/patch/10717125/">这里</a>，这样的话就不用更改一次 .config 就重新编译整个内核。</li>
+  <li>QEMU 项目使用 meson 构建的，其会自动在 build 文件夹中生成 <code class="language-plaintext highlighter-rouge">compile_commands.json</code>, 直接拷贝到项目的顶层目录就可以了。</li>
+  <li><a href="https://stackoverflow.com/questions/23960835/cmake-not-generating-compile-commands-json">cmake</a> 和 <a href="https://ninja-build.org/manual.html">ninja</a> 都有生成 <code class="language-plaintext highlighter-rouge">compile_commands.json</code> 的脚本</li>
+  <li>see <a href="https://github.com/MaskRay/ccls/wiki/Project-Setup">ccls documentation</a> for more</li>
+</ol>
+
+<p>一个工程只要生成 <code class="language-plaintext highlighter-rouge">compile_commands.json</code>，那么一切就大功告成了。</p>
+
+<h3 id="安装各种-lsp">安装各种 lsp</h3>
+
+<p>通过 <a href="https://github.com/williamboman/mason.nvim">mason</a> 可以自动的安装各种 lsp，
+在 neovim 中执行 <code class="language-plaintext highlighter-rouge">:Mason</code> 可以检查各种插件的执行状态。</p>
+
+<p>对于 mason 不支持的 lsp，就需要手动安装了，例如 <code class="language-plaintext highlighter-rouge">sudo apt install ccls</code></p>
+<ul>
+  <li><a href="https://github.com/MaskRay/ccls/wiki/Install">ccls</a></li>
+</ul>
+
+<h3 id="安装本配置">安装本配置</h3>
+
+<p>nvim 的配置在 ~/.config/nvim 中，</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">mv</span> ~/.config/nvim ~/.config/nvim.bak <span class="c"># 保存原有配置</span>
+<span class="nb">cd</span> ~ <span class="c"># 保证在根目录下</span>
+</code></pre></div></div>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git clone <span class="nt">--depth</span><span class="o">=</span>1 https://github.com/martins3/My-Linux-config .dotfiles <span class="c"># 随便什么名字</span>
+<span class="nb">ln</span> <span class="nt">-s</span> ~/.dotfiles/nvim ~/.config/nvim <span class="c"># 创建一个软链接指向此处</span>
+nvim
+</code></pre></div></div>
+
+<p>然后打开 nvim，nvim 会检查包管理器 lazy.nvim 是否存在，如果不存在，那么首先安装 lazy.nvim ，然后 lazy.nvim 会自动安装所有的插件.</p>
+
+<h3 id="手动编译一些插件">手动编译一些插件</h3>
+
+<p>一般来说，安装插件是可以自动构建好的，但是我发现有两个插件很多时候并不能，给搭建带来很多困扰，所以可以手动构建</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># rsync.nvim</span>
+<span class="nb">cd</span> ~/.local/share/nvim/lazy/rsync.nvim <span class="o">&amp;&amp;</span> make <span class="nt">-j8</span>
+<span class="c"># markdown-preview.nvim</span>
+<span class="nb">cd</span> ~/.local/share/nvim/lazy/markdown-preview.nvim/app <span class="o">&amp;&amp;</span> npm <span class="nb">install</span>
+</code></pre></div></div>
+
+<h3 id="checkhealth-检查">checkhealth 检查</h3>
+
+<p>在 nvim 中间执行 <code class="language-plaintext highlighter-rouge">checkhealth</code> 命令，其会提醒需要安装的各种依赖, <strong>比如 xclip 没有安装，那么和系统的 clipboard 和 vim 的 clipboard 之间复制会出现问题</strong>。neovim 的 python 的没有安装可能导致一些插件不可用。</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>我的配置的截图</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><img src="./2023 年 vim 的 C_C++ 配置 _ 工欲善其事,必先利其器_files/checkhealth.png"></td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="基本操作">基本操作</h2>
+
+<p>基本操作是所有人都需要的比如，<code class="language-plaintext highlighter-rouge">h</code> <code class="language-plaintext highlighter-rouge">j</code> <code class="language-plaintext highlighter-rouge">k</code> <code class="language-plaintext highlighter-rouge">l</code> <code class="language-plaintext highlighter-rouge">e</code> <code class="language-plaintext highlighter-rouge">w</code> <code class="language-plaintext highlighter-rouge">b</code> <code class="language-plaintext highlighter-rouge">g</code> 等等就不说了。下面说明的内容只是我的常用操作，更多详细的操作请移步到 <a href="https://martins3.github.io/My-Linux-Config/nvim/lua/usr/which-key.lua">which-key.lua</a>对应的插件的文档。</p>
+
+<p>三个最核心的 leader 键:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th><code class="language-plaintext highlighter-rouge">&lt;leader&gt;</code></th>
+      <th><code class="language-plaintext highlighter-rouge">c</code></th>
+      <th><code class="language-plaintext highlighter-rouge">&lt;Space&gt;</code></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>搜索相关</td>
+      <td>window 相关的</td>
+      <td>其他的各种操作使用 space 作为开始</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>其中 <code class="language-plaintext highlighter-rouge">&lt;leader&gt;</code> 被映射为 <code class="language-plaintext highlighter-rouge">,</code></p>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">let</span> <span class="n">g</span><span class="o">:</span><span class="n">mapleader</span> <span class="o">=</span> <span class="sc">','</span>
+</code></pre></div></div>
+
+<p>快捷键的配置使用 <a href="https://github.com/folke/which-key.nvim">which-key.nvim</a>，</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>当按下 <code class="language-plaintext highlighter-rouge">,</code> 之后，经过 <code class="language-plaintext highlighter-rouge">timeoutlen</code> 之后， 弹出下面的窗口显示下一步的按键</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><img src="./2023 年 vim 的 C_C++ 配置 _ 工欲善其事,必先利其器_files/key.png"></td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="退出">退出</h3>
+
+<p>虽然我使用了很长时间的 vim，但是两个东西我依旧觉得非常坑，那就是退出和复制。关于 vim 如何退出，闹出很多笑话，比如有人创建一个<a href="https://github.com/hakluke/how-to-exit-vim">仓库</a>用于收集各种退出的方法。stackoverflow 的报告说，其帮助了一百万人次如何退出 vim 。</p>
+
+<ol>
+  <li>使用命令 <code class="language-plaintext highlighter-rouge">:q</code> 可以退出一个窗口，这个命令被映射为 <code class="language-plaintext highlighter-rouge">q</code>。</li>
+  <li>我使用命令 <code class="language-plaintext highlighter-rouge">:xa</code> 退出 vim。 <code class="language-plaintext highlighter-rouge">x</code> 表示保存并且关闭 buffer，<code class="language-plaintext highlighter-rouge">a</code>表示运用于所有的。这个命令被在配置中被映射为 <code class="language-plaintext highlighter-rouge">&lt;space&gt;</code> <code class="language-plaintext highlighter-rouge">q</code> 了。</li>
+</ol>
+
+<h3 id="复制粘贴">复制粘贴</h3>
+
+<p>vim 支持多个剪切板，系统剪切板只是 vim 剪切板中的一个</p>
+
+<p>通过 “:h registers” 可以看到 <code class="language-plaintext highlighter-rouge">"*</code> and <code class="language-plaintext highlighter-rouge">"+</code> 是对应的系统剪切板</p>
+
+<blockquote>
+  <ol>
+    <li>Selection registers <code class="language-plaintext highlighter-rouge">"*</code> and <code class="language-plaintext highlighter-rouge">"+</code>
+Use these registers for storing and retrieving the selected text for the GUI.
+See |quotestar| and |quoteplus|. When the clipboard is not available or not
+working, the unnamed register is used instead. For Unix systems and Mac OS X,
+see |primary-selection|.</li>
+  </ol>
+</blockquote>
+
+<p>当在浏览器中复制的内容，实际上被存放到了 <code class="language-plaintext highlighter-rouge">+</code> 这个 register 中了，
+为了粘贴到 vim 中，就需要使用 <code class="language-plaintext highlighter-rouge">"</code> <code class="language-plaintext highlighter-rouge">+</code> <code class="language-plaintext highlighter-rouge">p</code> 了，其含义为:</p>
+<ol>
+  <li><code class="language-plaintext highlighter-rouge">"</code> : 使用寄存器</li>
+  <li><code class="language-plaintext highlighter-rouge">+</code> : 选择系统剪切板这个寄存器</li>
+  <li><code class="language-plaintext highlighter-rouge">p</code> : 粘贴</li>
+</ol>
+
+<p>由于本配置使用了 <a href="https://github.com/folke/which-key.nvim">which-key.nvim</a>，所以可以
+在 normal mode 中使用 <code class="language-plaintext highlighter-rouge">"</code> 或者在 insert mode 中使用 <code class="language-plaintext highlighter-rouge">&lt;C-r&gt;</code> 来展示 register 的内容。</p>
+
+<p>为了加快这个操作，可以重新映射一些键位。</p>
+<div class="language-vim highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">map</span> <span class="p">&lt;</span>leader<span class="p">&gt;</span><span class="k">y</span> "<span class="p">+</span><span class="k">y</span>
+<span class="nb">map</span> <span class="p">&lt;</span>leader<span class="p">&gt;</span><span class="k">p</span> "<span class="p">+</span><span class="k">p</span>
+<span class="nb">map</span> <span class="p">&lt;</span>leader<span class="p">&gt;</span><span class="k">d</span> "<span class="p">+</span><span class="k">d</span>
+</code></pre></div></div>
+<p>所以现在可以使用，<code class="language-plaintext highlighter-rouge">,</code> <code class="language-plaintext highlighter-rouge">y</code> 和 <code class="language-plaintext highlighter-rouge">,</code> <code class="language-plaintext highlighter-rouge">p</code> 实现复制粘贴，<code class="language-plaintext highlighter-rouge">,</code> <code class="language-plaintext highlighter-rouge">d</code> 删除到系统剪切板中。</p>
+
+<h3 id="符号搜索">符号搜索</h3>
+
+<p>利用 <a href="https://github.com/nvim-telescope">telescope</a> 快速搜索 file，buffer，function 等</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>key binding</th>
+      <th>function</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">,</code> <code class="language-plaintext highlighter-rouge">o</code></td>
+      <td>在当前文件中间搜索该符号</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">,</code> <code class="language-plaintext highlighter-rouge">s</code></td>
+      <td>整个工程中间搜索该符号</td>
+    </tr>
+  </tbody>
+</table>
+
+<table>
+  <thead>
+    <tr>
+      <th>在 fork.c 中间搜索 <code class="language-plaintext highlighter-rouge">_x64_sys_fork</code> 这个符号</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><img src="./2023 年 vim 的 C_C++ 配置 _ 工欲善其事,必先利其器_files/workspace-symbols.png"></td>
+    </tr>
+  </tbody>
+</table>
+
+<table>
+  <thead>
+    <tr>
+      <th>在整个 Linux 工程中间搜索 sysclone 这个符号</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><img src="./2023 年 vim 的 C_C++ 配置 _ 工欲善其事,必先利其器_files/outline-symbols.png"></td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="定义和引用">定义和引用</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>key binding</th>
+      <th>function</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">g</code> <code class="language-plaintext highlighter-rouge">d</code></td>
+      <td>跳转到定义</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">g</code> <code class="language-plaintext highlighter-rouge">r</code></td>
+      <td>当只有一个 ref 的时候，直接跳转，当存在多个的时候，显示如下窗口，可以逐个选择</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="注释">注释</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>key binding</th>
+      <th>function</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">K</code></td>
+      <td>可以查询函数，变量，宏等，注释将会显示在悬浮窗口上。</td>
+    </tr>
+  </tbody>
+</table>
+
+<table>
+  <thead>
+    <tr>
+      <th>展示 <code class="language-plaintext highlighter-rouge">put_swap_page</code> 的注释</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><img src="./2023 年 vim 的 C_C++ 配置 _ 工欲善其事,必先利其器_files/comment.png"></td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="格式化">格式化</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>key binding</th>
+      <th>function</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">&lt;space&gt;</code> <code class="language-plaintext highlighter-rouge">l</code> <code class="language-plaintext highlighter-rouge">f</code></td>
+      <td>格式化当前文件，支持 C/C++ , Rust 和 Python 等。</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>可以通过一个工程的目录下的 <code class="language-plaintext highlighter-rouge">.clang-format</code> 来实现配置 C/C++ 的格式样式:</p>
+
+<ol>
+  <li>https://github.com/MaskRay/ccls/blob/master/.clang-format : 将代码格式为 LLVM 风格</li>
+  <li>https://github.com/torvalds/linux/blob/master/.clang-format : 代码格式为 linux kernel 风格</li>
+</ol>
+
+<h3 id="重命名">重命名</h3>
+
+<p>有时候，写了一个函数名，然后多次调用，最后发现函数名的单词写错了，一个个的修改非常的让人窒息。使用 <code class="language-plaintext highlighter-rouge">&lt;space&gt;</code> <code class="language-plaintext highlighter-rouge">l</code> <code class="language-plaintext highlighter-rouge">n</code> 在需要重命名的元素上，即可批量重命名。</p>
+
+<h3 id="字符串搜索和替换">字符串搜索和替换</h3>
+
+<p>vim 内置了强大的搜索替换功能</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">/</code> <code class="language-plaintext highlighter-rouge">?</code> 分别向前和向后搜索</li>
+  <li>在 visual block 中可以使用 norm 来进行插入或者使用宏</li>
+  <li>替换的语法 <code class="language-plaintext highlighter-rouge">%s/pattern/replace/g</code></li>
+</ul>
+
+<p>上面说明的都是单文件的，通过插件，可以容易的实现多文件的搜索和替换。</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>key binding</th>
+      <th>function</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">leader</code> <code class="language-plaintext highlighter-rouge">s</code> <code class="language-plaintext highlighter-rouge">p</code></td>
+      <td>在整个工程中搜索替换该字符串</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">leader</code> <code class="language-plaintext highlighter-rouge">s</code> <code class="language-plaintext highlighter-rouge">P</code></td>
+      <td>在整个工程中搜索替换<strong>对于光标所在</strong>字符串</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">leader</code> <code class="language-plaintext highlighter-rouge">g</code></td>
+      <td>实时动态搜索(grep on the fly)</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">leader</code> <code class="language-plaintext highlighter-rouge">G</code></td>
+      <td>实时动态搜索(grep on the fly)<strong>光标所在</strong>字符串</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="file-tree">file tree</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>key binding</th>
+      <th>function</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">space</code> <code class="language-plaintext highlighter-rouge">f</code> <code class="language-plaintext highlighter-rouge">o</code></td>
+      <td>将当前的文件显示在 filetree 中间</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">space</code> <code class="language-plaintext highlighter-rouge">f</code> <code class="language-plaintext highlighter-rouge">t</code></td>
+      <td>打开关闭文件树</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">r</code></td>
+      <td>相当于 shell 中间的 mv 命令，实现文件的重命名或者移动</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">d</code></td>
+      <td>删除</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">j</code></td>
+      <td>向下移动</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">k</code></td>
+      <td>向上移动</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">h</code></td>
+      <td>移动到上一个目录</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">l</code></td>
+      <td>打开目录或者文档</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">a</code></td>
+      <td>创建文件(如果输入的名称结尾有 / ，那么就是创建文件夹)</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="window">window</h3>
+
+<p>因为 window leader 键位被我重新映射为 <code class="language-plaintext highlighter-rouge">c</code></p>
+
+<table>
+  <thead>
+    <tr>
+      <th>key binding</th>
+      <th>function</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">&lt;Tab&gt;</code></td>
+      <td>进入下一个窗口</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">c</code> <code class="language-plaintext highlighter-rouge">g</code></td>
+      <td>水平拆分窗口</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">c</code> <code class="language-plaintext highlighter-rouge">f</code></td>
+      <td>垂直拆分窗口</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">q</code></td>
+      <td>关闭窗口</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">c</code> <code class="language-plaintext highlighter-rouge">m</code></td>
+      <td>当前窗口最大化</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="buffer">buffer</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>key binding</th>
+      <th>function</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">,</code> <code class="language-plaintext highlighter-rouge">b</code></td>
+      <td>搜索 buffer</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">,</code> num</td>
+      <td>切换当前窗口到第 num 个 buffer</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">&lt;Space&gt;</code> <code class="language-plaintext highlighter-rouge">b</code> <code class="language-plaintext highlighter-rouge">c</code></td>
+      <td>关闭其他已经保存的 buffer</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">&lt;Space&gt;</code> <code class="language-plaintext highlighter-rouge">b</code> <code class="language-plaintext highlighter-rouge">d</code></td>
+      <td>关闭当前 buffer</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="文件搜索">文件搜索</h3>
+
+<p>telescope 同样可以用于搜索文件使用 <code class="language-plaintext highlighter-rouge">,</code> <code class="language-plaintext highlighter-rouge">f</code> + 文件名</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>文件搜索</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><img src="./2023 年 vim 的 C_C++ 配置 _ 工欲善其事,必先利其器_files/search-files.png"></td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="导航">导航</h3>
+
+<p>利用 <a href="https://martins3.github.io/My-Linux-Config/docs/stevearc/aerial.nvim">aerial.nvim</a> 实现函数侧边栏导航(类似于 tagbar) ，打开关闭的快捷键 <code class="language-plaintext highlighter-rouge">c</code> <code class="language-plaintext highlighter-rouge">n</code>。</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>基于 stevearc/aerial.nvim 的导航栏</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><img src="./2023 年 vim 的 C_C++ 配置 _ 工欲善其事,必先利其器_files/outline.png"></td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="代码段">代码段</h3>
+
+<p>基于<a href="https://github.com/rafamadriz/friendly-snippets/blob/main/snippets/c/c.json">friendly-snippets</a> 可以自己向 UltiSnips/c.snippets，
+UltiSnips/cpp.snippets 中间添加 C/C++ 的自己定义代码段。
+以前刷 OJ 的时候每次都不知道要加入什么头文件，然后就写了一个自定义 snippet，一键加入所有常用的头文件。</p>
+
+<pre><code class="language-snippets">snippet import
+  #include &lt;bits/stdc++.h&gt;
+  // #include "../dbg.hpp"
+  using namespace std;
+  #define REOPEN_READ freopen("/home/maritns3/test/cpp/input.txt", "r", stdin);
+  int main(int argc, char *argv[]){https://github.com/rafamadriz/friendly-snippets/blob/main/snippets/c/c.json
+    ${0}
+  	return 0;
+  }
+</code></pre>
+
+<table>
+  <thead>
+    <tr>
+      <th>输入 import 这些内容就自动补全</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><img src="./2023 年 vim 的 C_C++ 配置 _ 工欲善其事,必先利其器_files/snippet.png"></td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="代码补全">代码补全</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>代码补全</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><img src="./2023 年 vim 的 C_C++ 配置 _ 工欲善其事,必先利其器_files/autocomplete.png"></td>
+    </tr>
+  </tbody>
+</table>
+
+<p>使用 <code class="language-plaintext highlighter-rouge">enter</code> 来确认选择，使用 <code class="language-plaintext highlighter-rouge">tab</code> 选择下一个。</p>
+
+<h3 id="git-集成">Git 集成</h3>
+
+<p>包含了一些 git 常见操作，快捷键都是 <code class="language-plaintext highlighter-rouge">&lt;Space&gt;</code> <code class="language-plaintext highlighter-rouge">g</code> 开始的，当然 git 本身就是一个非常复杂的工具，主要使用三个工具:</p>
+
+<ol>
+  <li><a href="https://github.com/jonas/tig">tig</a>，利用 <a href="https://github.com/voldikss/vim-floaterm">floaterm</a>，在 vim 中间运行。</li>
+  <li><a href="https://github.com/voldikss/vim-floaterm">GitMessenger</a>可以显示所在行的 git blame 信息。</li>
+  <li><a href="https://github.com/tpope/vim-fugitive">vim-fugitive</a> : 查看每一行的 blame, 提交代码等</li>
+</ol>
+
+<h3 id="github-集成">Github 集成</h3>
+
+<p>通过 <a href="https://github.com/cli/cli">github cli</a> 可以在终端上操作 github 上的 issue / pull request 等，
+而通过 <a href="https://github.com/pwntester/octo.nvim">octo.nvim</a> 可以将 github 进一步继承到 nvim 中。</p>
+
+<ol>
+  <li>安装 github cli 参考<a href="https://github.com/cli/cli/blob/trunk/docs/install_linux.md">这里</a></li>
+  <li>使用方法参考 octo.nvim 的 README.md</li>
+</ol>
+
+<table>
+  <thead>
+    <tr>
+      <th>直接查看本项目中的 issue</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><img src="./2023 年 vim 的 C_C++ 配置 _ 工欲善其事,必先利其器_files/octo.png"></td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="调试">调试</h3>
+
+<p>我一般使用 <a href="https://github.com/cyrus-and/gdb-dashboard">gdb-dashboard</a>，不使用额外的 vim 配置。</p>
+
+<p>neovim 中有内置调试功能 <a href="https://fzheng.me/2018/05/28/termdebug/">Termdebug</a>，但是感觉功能比较初级。</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>使用内置的 Termdebug 进行调试</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><img src="./2023 年 vim 的 C_C++ 配置 _ 工欲善其事,必先利其器_files/debug.png"></td>
+    </tr>
+  </tbody>
+</table>
+
+<p>一种更强大的方法是通过 <a href="https://github.com/mfussenegger/nvim-dap">nvim-dap</a> 来构建，但是现在还不成熟:</p>
+<ul>
+  <li>需要安装多个插件；</li>
+  <li>配置文件比较复杂，尝试过一次，但是放弃了，对应的代码在<a href="https://github.com/Martins3/My-Linux-Config/tree/debug/nvim/lua/debugxx">这个位置</a>。</li>
+</ul>
+
+<p>此外还有插件 <a href="https://github.com/sakhnik/nvim-gdb">nvim-gdb</a> ，也许可以勉强维持生活。</p>
+
+<p><a href="https://oguzhaneroglu.com/projects/gdb-frontend/">gdb-frontend</a> 看上去不错，利用浏览器提供了一个相当精致的界面</p>
+
+<p>但是无论如何，使用 debugger 来找 bug 不是一个好习惯，应该是靠清晰的代码结构和单元测试<sup id="fnref:2" role="doc-noteref"><a href="https://martins3.github.io/My-Linux-Config/docs/nvim.html#fn:2" class="footnote" rel="footnote">1</a></sup>。</p>
+
+<h3 id="vim-cmdline-自动补全">vim cmdline 自动补全</h3>
+
+<p>通过 <a href="https://github.com/gelguy/wilder.nvim">wilder.nvim</a> 可以让 vim cmdline 实现模糊搜索。</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>利用 wilder.nvim 在命令模式自动补全</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><img src="./2023 年 vim 的 C_C++ 配置 _ 工欲善其事,必先利其器_files/wilder.png"></td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="终端">终端</h3>
+
+<p>利用 <code class="language-plaintext highlighter-rouge">voidkiss/floaterm</code> 可以实现将终端以 float window 的形式打开，我映射的快捷键分别为:</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">Ctrl</code> <code class="language-plaintext highlighter-rouge">n</code> : 创建新的 terminal window</li>
+  <li><code class="language-plaintext highlighter-rouge">Ctrl</code> <code class="language-plaintext highlighter-rouge">p</code> : 切换到 <code class="language-plaintext highlighter-rouge">prev</code> 的 terminal window</li>
+  <li><code class="language-plaintext highlighter-rouge">Ctrl</code> <code class="language-plaintext highlighter-rouge">t</code> : 显示/隐藏窗口</li>
+</ul>
+
+<table>
+  <thead>
+    <tr>
+      <th>打开悬浮终端，并且运行 htop 的结果</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><img src="./2023 年 vim 的 C_C++ 配置 _ 工欲善其事,必先利其器_files/floaterm.png"></td>
+    </tr>
+  </tbody>
+</table>
+
+<p>关于 <code class="language-plaintext highlighter-rouge">voidkiss/floaterm</code> 和 <code class="language-plaintext highlighter-rouge">akinsho/toggleterm.nvim</code> 的对比:</p>
+
+<ol>
+  <li>voidkiss 的更加稳定，功能更多。但是有严重的性能问题，例如编译内核的过程中，产生的 log 可能导致 nvim 卡死。</li>
+  <li>akinsho 项目更加新，使用 lua 写的，在 UI 上更加灵活，但是存在一些细微的 bug 和功能缺失。</li>
+</ol>
+
+<ul>
+  <li>终端丢失。</li>
+  <li>切换终端的时候莫名奇妙进入 normal mode</li>
+  <li>如果同时使用多个终端，其管理难度简直逆天。</li>
+  <li>没有简洁的 voidkiss 中 FloatermNew 的功能。
+综上，我认为最近两年没有必要切换。</li>
+</ul>
+
+<h3 id="一键运行代码">一键运行代码</h3>
+
+<p>在 VSCode 中有一个非常有名的插件叫 <a href="https://marketplace.visualstudio.com/items?itemName=formulahendry.code-runner">Code Runner</a></p>
+
+<p>vim 中利用 <a href="https://github.com/CRAG666/code_runner.nvim"><code class="language-plaintext highlighter-rouge">code_runner.nvim</code></a> 可以实现类似的功能。</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>binding</th>
+      <th>function</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">&lt;space&gt;</code> <code class="language-plaintext highlighter-rouge">l</code> <code class="language-plaintext highlighter-rouge">r</code></td>
+      <td>根据文件类型，执行该文件</td>
+    </tr>
+  </tbody>
+</table>
+
+<table>
+  <thead>
+    <tr>
+      <th>C 语言文件一键运行</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><img src="./2023 年 vim 的 C_C++ 配置 _ 工欲善其事,必先利其器_files/code-runner.png"></td>
+    </tr>
+  </tbody>
+</table>
+
+<p>从上到下三个箭头分别指向:</p>
+
+<ul>
+  <li>源代码</li>
+  <li>运行结果</li>
+  <li>运行使用的命令</li>
+</ul>
+
+<h3 id="一键注释代码">一键注释代码</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>binding</th>
+      <th>function</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">&lt;space&gt;</code> <code class="language-plaintext highlighter-rouge">l</code> <code class="language-plaintext highlighter-rouge">c</code></td>
+      <td>根据文件类型，自动注释选中的区间</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="markdown-集成">markdown 集成</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>binding</th>
+      <th>function</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">&lt;space&gt;</code> <code class="language-plaintext highlighter-rouge">t</code> <code class="language-plaintext highlighter-rouge">m</code></td>
+      <td>开启表格快捷编辑模式</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">&lt;leader&gt;</code> <code class="language-plaintext highlighter-rouge">x</code></td>
+      <td>预览</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="session">Session</h3>
+
+<p>在每一个文件夹会自动创建 session，这样当 nvim 重新打开的时候，window 还是上次关闭的样子.</p>
+
+<p>使用命令 SessionDelete 可以删除掉保存的 session 。</p>
+
+<p>如果想要清理所有 sessions 使用如下命令发。</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">rm</span> <span class="nt">-r</span> ~/.local/share/nvim/sessions
+</code></pre></div></div>
+
+<h3 id="快速移动">快速移动</h3>
+
+<p>vim 基本的移动技术，例如 e b w G gg 之类的就不说了， 下面简单说明一些有趣的的技术：</p>
+
+<p>在我使用 <a href="https://github.com/ggandor/leap.nvim">ggandor/leap.nvim</a> 之后，有种全新的体验，跳转到任何位置，之需要按下 <code class="language-plaintext highlighter-rouge">s</code>，然后连续按下该位置开始的两个字符，
+接下来会提示按什么就可以直接跳转到该位置。</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>例子</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><img src="https://github.com/ggandor/lightspeed.nvim/raw/media/quick_example_2.png?raw=true"></td>
+    </tr>
+  </tbody>
+</table>
+
+<p>按 s 开始跳转，然后搜索第一个字母 m，会出现三种选择:</p>
+
+<ul>
+  <li>me : 两个都是白色，此时再按 e，那么可以直接跳转到其上</li>
+  <li>mes : 需要按 es 才可以，原因是存在多个满足 m?s 形式的字符。</li>
+  <li>met : 其 t 被高亮的，直接按 t 就可以了，无需按 s ，因为 met 的三个字母是唯一的。</li>
+</ul>
+
+<p>进行跳转的时候，前两个字符可以直接敲下去，而第三个字符需要看 easy mothion 的设置。</p>
+
+<p>如果想要让自己彻底的移除掉低效移动的坏习惯，还是得靠 <a href="https://github.com/m4xshen/hardtime.nvim">m4xshen/hardtime.nvim</a></p>
+
+<table>
+  <thead>
+    <tr>
+      <th>binding</th>
+      <th>function</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">CTRL-o</code></td>
+      <td>跳转的位置的回溯</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">g;</code></td>
+      <td>跳转到刚刚编辑的位置</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">gi</code></td>
+      <td>跳转到刚刚编辑的位置，并且进入到插入模式</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">gf</code></td>
+      <td>打开光标所在文件</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">%</code></td>
+      <td>跳转到包围的 ([{}]) 或者在匹配的 #if, #ifdef, #else, #elif, #endif 之间跳转</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="输入法自动切换">输入法自动切换</h3>
+
+<p>在 vim 中使用中文输入法，如果打字完成，进入 normal 模式，使用 gg 想要移动到文件的第一行，结果发现 gg 被中文输入法截断了。
+所以需要一个插件可以在进入 normal 的模式的时候中文输入法切走。</p>
+
+<p>可以使用两套方案，但是原理都是相同的，</p>
+
+<ul>
+  <li>方案 1:
+    <ul>
+      <li>使用 <a href="https://github.com/h-hg/fcitx.nvim">fcitx.nvim</a>，其代码相当简洁优雅。</li>
+      <li>如果是在 MacOS 上，需要在系统中安装 <a href="https://github.com/xcodebuild/fcitx-remote-for-osx">fcitx-remote-for-osx</a> 来切换输入法。</li>
+    </ul>
+  </li>
+  <li>方案 2:
+    <ul>
+      <li><a href="https://github.com/neoclide/coc-imselect">coc-imselect</a> 自动包含了 fcitx-remote-for-osx 的功能，无论是在 MacOS 上还是 Linux 上都是相同的。</li>
+    </ul>
+  </li>
+</ul>
+
+<p>当我在切换到 MacOS 的时候，发现输入法的自动切换不能正常工作，最后通过这个 <a href="https://github.com/Martins3/fcitx.nvim/commit/f1c97b6821a76263a84addfe5c6fdb4178e90ca9">commit</a> 进行了修复。</p>
+
+<h2 id="本配置源代码解释">本配置源代码解释</h2>
+
+<p>总体来说，本配置的代码就是从上面介绍的各个项目提供的标准配置的组合，然后添加我的一些微调。</p>
+
+<p>nvim 配置在仓库的位置为 ./nvim 中，其他的目录不用管，那是关于 vim 其他的配置。</p>
+
+<ul>
+  <li>init.vim : vim 的基础设置，在其中加载 vim/ 和 lua/usr 下的配置文件</li>
+  <li>vim/
+    <ul>
+      <li>debug.vim : 定义了两个函数</li>
+      <li>misc.vim : 各种插件的细微的修改</li>
+    </ul>
+  </li>
+  <li>lua/init.lua : 加载其他的 lua 配置</li>
+  <li>lua/usr
+    <ul>
+      <li>packer.lua : 安装的插件，按照作用放到一起，每一个插件是做什么的都有注释。</li>
+      <li>which-key.lua : 快捷键的配置</li>
+      <li>nvim-tree.lua … : 一些插件的默认配置的调整，都非常短。</li>
+      <li>lsp : native lsp 相关的配置</li>
+    </ul>
+  </li>
+  <li>UltiSnips/ : 自定义的代码段，主要是 bash 相关的</li>
+</ul>
+
+<h2 id="faq">FAQ</h2>
+
+<ul>
+  <li>为什么不使用 IDE，比如 <a href="https://www.jetbrains.com/clion/">CLion</a>?
+    <ul>
+      <li>恰恰相反，我反对新手一开始就折腾 vim ，刚开始学编程，CLion 我认为是最好的 IDE 。<a href="https://www.codeblocks.org/">Code::Blocks</a> 过于陈旧，<a href="https://visualstudio.microsoft.com/zh-hans/">Visual Studio</a> 是 Windows 平台独占。而 CLion 保持了 jetbrains 的一贯高水平，简单易用，不要需要掌握太多 gcc 工具链的知识，只要点击一下 绿色的小三角就可以运行代码，而且使用校园邮箱是可以申请免费使用的。 但是，对于老司机，IDE 提供了太多了太多我们不需要的功能，可定制太差，如果我同时想要写多门语言，那么就要同时购买多个 IDE 。</li>
+      <li>我认为当你掌握了一门语言，比如 C 语言，可以写超过千行的项目的时候，是入手的好时间。</li>
+    </ul>
+  </li>
+  <li>为什么不使用 VS Code ?
+    <ul>
+      <li>VS Code 比 Sublime 功能更强，比 <a href="https://atom.io/">Atom</a> 性能更高，而且 VSCode 可以集成 vim 。因为 VSCode 是基于 electron 的，甚至可以在一个 window 中编辑 markdown, 一个 window 实时预览 markdown 。</li>
+      <li>但是 vim 可以更加简洁, 灵活和高效。</li>
+    </ul>
+  </li>
+  <li>我应该使用这个配置吗 ?
+    <ul>
+      <li>我认为仓库的意义是让大家使用上 vim 新特性，其实还有很多的其他的配置也非常不错，但是一些常年没有更新，以及使用老旧插件的配置就不用看。
+比如 <a href="https://github.com/yangyangwithgnu/use_vim_as_ide">use_vim_as_ide</a>, <a href="https://exvim.github.io/">exvim</a>, <a href="https://github.com/spf13/spf13-vim">spf13-vim</a>, <a href="https://github.com/amix/vimrc">The Ultimate vimrc</a> 之类的。</li>
+    </ul>
+  </li>
+  <li>支持什么操作系统和架构?
+    <ul>
+      <li>支持 Windows ，但是需要少量的调整，主要是安装方面。</li>
+      <li>对于 x86 Linux / Mac 完整的支持。</li>
+      <li><a href="https://martins3.github.io/loongarch/neovim.html">龙芯架构 Linux</a> 基本支持。</li>
+    </ul>
+  </li>
+  <li>使用 clangd 还是 ccls
+    <ul>
+      <li>两个都用过，但是我推荐 ccls，具体原因看<a href="https://martins3.github.io/My-Linux-Config/docs/ccls-vs-clangd.html">这里</a></li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="vim-的小技巧">vim 的小技巧</h2>
+
+<ul>
+  <li>翻滚屏幕</li>
+</ul>
+
+<table>
+  <thead>
+    <tr>
+      <th>key binding</th>
+      <th>function</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>H</td>
+      <td>保持屏幕内容不动, 移动到屏幕最上方</td>
+    </tr>
+    <tr>
+      <td>M</td>
+      <td>保持屏幕内容不动, 移动到屏幕中间</td>
+    </tr>
+    <tr>
+      <td>L</td>
+      <td>保持屏幕内容不动, 移动到屏幕最下面</td>
+    </tr>
+    <tr>
+      <td>zt</td>
+      <td>将当前行移动到屏幕最上方</td>
+    </tr>
+    <tr>
+      <td>zz</td>
+      <td>将当前行移动到屏幕中间</td>
+    </tr>
+    <tr>
+      <td>zb</td>
+      <td>将当前行移动到屏幕最下方</td>
+    </tr>
+    <tr>
+      <td>Ctrl + f</td>
+      <td>向前滚动一屏，但是光标在顶部</td>
+    </tr>
+    <tr>
+      <td>Ctrl + d</td>
+      <td>向前滚动一屏，光标在屏幕的位置保持不变</td>
+    </tr>
+    <tr>
+      <td>Ctrl + b</td>
+      <td>向后滚动一屏，但是光标在底部</td>
+    </tr>
+    <tr>
+      <td>Ctrl + u</td>
+      <td>向后滚动半屏，光标在屏幕的位置保持不变</td>
+    </tr>
+    <tr>
+      <td>Ctrl + e</td>
+      <td>丝般顺滑地向上滚动</td>
+    </tr>
+    <tr>
+      <td>Ctrl + y</td>
+      <td>丝般顺滑地向下滚动</td>
+    </tr>
+  </tbody>
+</table>
+
+<ul>
+  <li>vim 下的 Man 命令打开的 manual 是带高亮和符号跳转的，比在终端中间直接使用 man 好多了</li>
+  <li>在最后一行添加相同的字符 <code class="language-plaintext highlighter-rouge">Ctrl + v</code> <code class="language-plaintext highlighter-rouge">$</code> <code class="language-plaintext highlighter-rouge">A</code> <code class="language-plaintext highlighter-rouge">string appended</code>，<a href="https://stackoverflow.com/questions/594448/how-can-i-add-a-string-to-the-end-of-each-line-in-vim">参考</a>。</li>
+  <li>在 Esc 是 vim 中间使用频率非常高的键位，为了不让自己的左手小拇指被拉长，可以将 CapsLock 键映射为 Esc 键，一种修改方法为在 ~/.profile 中加入。这个方法存在一个小问题，就是需要打开一个终端窗口才可以加载这个，应为 .profile 在 login 的时候才会被执行一次。</li>
+</ul>
+
+<pre><code class="language-txt">setxkbmap -option caps:swapescape
+</code></pre>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">:w !sudo tee %</code> 来保存一个 readonly 文件</li>
+  <li><code class="language-plaintext highlighter-rouge">:g/pattern/command</code> 可以用于对于匹配的模式操作
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">:g!/pattern/command</code> 对于不匹配的操作</li>
+    </ul>
+  </li>
+  <li><code class="language-plaintext highlighter-rouge">?</code> 是向后搜索，<code class="language-plaintext highlighter-rouge">/</code> 是向前搜索</li>
+  <li><code class="language-plaintext highlighter-rouge">:put =range(1, 10)</code> 插入 1 到 10 的数值</li>
+  <li>对于选中的 visual block <code class="language-plaintext highlighter-rouge">S</code> <code class="language-plaintext highlighter-rouge">str</code> 可以在 visual block 两侧添加 <code class="language-plaintext highlighter-rouge">str</code>. (<a href="https://github.com/tpope/vim-surround/issues/220">ref</a>)</li>
+  <li><a href="https://stackoverflow.com/questions/13405959/how-do-i-get-a-list-of-the-history-of-all-the-vim-commands-i-ran">获取历史命令</a> <code class="language-plaintext highlighter-rouge">,</code><code class="language-plaintext highlighter-rouge">q</code><code class="language-plaintext highlighter-rouge">:</code></li>
+  <li>使用 <code class="language-plaintext highlighter-rouge">[</code> <code class="language-plaintext highlighter-rouge">{</code> <code class="language-plaintext highlighter-rouge">(</code> 快速移动</li>
+</ul>
+
+<table>
+  <thead>
+    <tr>
+      <th>binding</th>
+      <th>function</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">{</code> / <code class="language-plaintext highlighter-rouge">}</code></td>
+      <td>分别向上向下跳转到空行</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">{</code> / <code class="language-plaintext highlighter-rouge">}</code></td>
+      <td>分别向上向下跳转到空格</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">[[</code> / <code class="language-plaintext highlighter-rouge">]]</code></td>
+      <td>分别向上或向下跳转最外层的 <code class="language-plaintext highlighter-rouge">{</code></td>
+    </tr>
+  </tbody>
+</table>
+
+<ul>
+  <li>
+    <p>在 vim 中可以通过<code class="language-plaintext highlighter-rouge">:help v_g_CTRL-A</code> 输入连续的数字</p>
+  </li>
+  <li>
+    <p>text-object</p>
+    <ul>
+      <li>动词 : c(hange) d(elete)</li>
+      <li>副词 : i(nside) a(round) t(o) f(orward)</li>
+      <li>名词 : w(ord) s(entence) p(aragraph) t(ag) ` ‘ “ [ ( {
+        <ul>
+          <li>tag 是 markup 语言中的 tag，例如 <code class="language-plaintext highlighter-rouge">&lt;h2&gt; hi &lt;/h2&gt;</code></li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<table>
+  <thead>
+    <tr>
+      <th>Old text</th>
+      <th>Command</th>
+      <th>New text</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>‘hello/wo*rld’</td>
+      <td>ci’</td>
+      <td>’’</td>
+    </tr>
+    <tr>
+      <td>&lt;*h2&gt; hi &lt;/h2&gt;</td>
+      <td>dit</td>
+      <td>&lt;*h2&gt; &lt;/h2&gt;</td>
+    </tr>
+  </tbody>
+</table>
+
+<ul>
+  <li>通过 <a href="https://github.com/kylechui/nvim-surround">nvim-surround</a> 插件，可以增加 surround 语义，表中的 * 表示光标的位置:</li>
+</ul>
+
+<blockquote>
+  <table>
+    <thead>
+      <tr>
+        <th>Old text</th>
+        <th>Command</th>
+        <th>New text</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>surr*ound_words</td>
+        <td>ysiw)</td>
+        <td>(surround_words)</td>
+      </tr>
+      <tr>
+        <td>*make strings</td>
+        <td>ys$”</td>
+        <td>“make strings”</td>
+      </tr>
+      <tr>
+        <td>[delete ar*ound me!]</td>
+        <td>ds]</td>
+        <td>delete around me!</td>
+      </tr>
+      <tr>
+        <td>remove &lt;b&gt;HTML t*ags&lt;/b&gt;`</td>
+        <td>dst</td>
+        <td>remove HTML tags</td>
+      </tr>
+      <tr>
+        <td>‘change quot*es’</td>
+        <td>cs’”</td>
+        <td>“change quotes”</td>
+      </tr>
+      <tr>
+        <td>&lt;b&gt;or tag* types&lt;/b&gt;</td>
+        <td>csth1<cr></cr></td>
+        <td>&lt;h1&gt;or tag types&lt;/h1&gt;</td>
+      </tr>
+      <tr>
+        <td>delete(functi*on calls)</td>
+        <td>dsf</td>
+        <td>function calls</td>
+      </tr>
+    </tbody>
+  </table>
+</blockquote>
+
+<p>其中 y 是增加，d 删除，c 修改 的语义。</p>
+
+<p>以上技巧，部分参考:</p>
+
+<ul>
+  <li><a href="https://thevaluable.dev/vim-advanced/">https://thevaluable.dev/vim-advanced/</a></li>
+</ul>
+
+<h2 id="值得一看的配置">值得一看的配置</h2>
+
+<ul>
+  <li><a href="https://github.com/LazyVim/LazyVim">LazyVim</a> : folke 大神写的 nvim 配置</li>
+  <li><a href="https://github.com/nvim-lua/kickstart.nvim">kickstart.nvim</a> 这绝对是开始使用 lua 来配置的 nvim 开始的好地方。强烈推荐。</li>
+  <li><a href="https://github.com/LunarVim/LunarVim">LunarVim</a> 超过 15000 star 的 IDE 配置</li>
+  <li><a href="https://github.com/NvChad/NvChad">NvChad</a> 同上</li>
+  <li><a href="https://github.com/jdhao/nvim-config">jdhao/nvim-config</a> : jdhao 的配置</li>
+  <li><a href="https://github.com/nyoom-engineering/nyoom.nvim">nyoom.nvim</a> : 纯 fennel</li>
+</ul>
+
+<h2 id="值得关注的插件">值得关注的插件</h2>
+
+<ul>
+  <li><a href="https://github.com/glepnir/lspsaga.nvim">lspsaga</a> : 提升 lsp 体验</li>
+  <li><a href="https://github.com/folke/trouble.nvim">trouble.nvim</a> : 提升 lsp 体验</li>
+  <li><a href="https://github.com/folke/neodev.nvim">neodev</a> neovim 开发 lua 插件环境</li>
+  <li><a href="https://github.com/rhysd/conflict-marker.vim">conflict-marker.vim</a> : 在 vim 中如何高效解决 git conflict</li>
+  <li><a href="https://github.com/kevinhwang91/nvim-ufo">nvim-ufo</a> 更加智能的折叠</li>
+  <li><a href="https://github.com/jacobsimpson/nvim-example-lua-plugin">nvim-example-lua-plugin</a> : 插件模板，打造你的第一个插件</li>
+  <li><a href="https://github.com/Exafunction/codeium.vim">codeium</a> : Copilot 替代品</li>
+  <li><a href="https://github.com/scalameta/nvim-metals">nvim-metals</a> : 芯片前端开发必备</li>
+  <li><a href="https://github.com/EthanJWright/vs-tasks.nvim">vs-tasks.nvim</a> : Code Runner</li>
+  <li><a href="https://github.com/ecthelionvi/NeoComposer.nvim">NeoComposer</a> : 更好地使用 macro</li>
+  <li><a href="https://github.com/notomo/gesture.nvim">gesture.nvim</a> : nvim 中鼠标还可以这样用?</li>
+  <li><a href="https://github.com/mrjones2014/legendary.nvim">legendary.nvim</a> :  据说比 which-key 好用</li>
+  <li><a href="https://github.com/zbirenbaum/neodim">neodim</a> : 降低 没有引用的函数、变量亮度 (这个功能 coc.nvim 本来有，只可惜我换掉了 coc.nvim)</li>
+  <li><a href="https://github.com/nvim-neotest/neotest">neotest</a> : 单元测试插件</li>
+</ul>
+
+<h2 id="有趣的插件">有趣的插件</h2>
+
+<ul>
+  <li><a href="https://github.com/tamton-aquib/zone.nvim">zone.nvim</a> : 屏保</li>
+  <li><a href="https://github.com/Eandrju/cellular-automaton.nvim">cellular-automaton.nvim</a> : 细胞自动机</li>
+</ul>
+
+<h2 id="学习">学习</h2>
+
+<ol>
+  <li><a href="https://neovimcraft.com/">neovimcraft</a> : neovim 插件教程学习导航网站</li>
+  <li><a href="https://github.com/mhinz/vim-galore">vim galore</a></li>
+  <li><a href="https://devhints.io/vimscript">devhints</a> : 另一个 vim checksheet</li>
+  <li>:help lua-guide</li>
+</ol>
+
+<h2 id="找资源">找资源</h2>
+
+<ol>
+  <li><a href="https://vimcolorschemes.com/">vimcolorschemes</a> vim 主题网站</li>
+  <li><a href="https://github.com/rockerBOO/awesome-neovim">awesome neovim</a></li>
+</ol>
+
+<h2 id="高级话题">高级话题</h2>
+<ul>
+  <li><a href="https://martins3.github.io/My-Linux-Config/docs/nvim-advantace.html">高级话题</a>，至少对于我来说比较高级 🤣</li>
+</ul>
+
+<h2 id="衍生">衍生</h2>
+
+<ol>
+  <li><a href="https://github.com/oakes/vim_cubed">vim cube</a> : 让 vim 在三维中显示</li>
+  <li><a href="https://github.com/rhysd/vim.wasm">vim.wasm</a> : 在 vim 在网页中间使用</li>
+  <li><a href="https://github.com/Kethku/neovide">neovide</a> : 一个酷炫的 GUI 客户端</li>
+  <li><a href="https://github.com/gdh1995/vimium-c">vimium-c</a> : 在浏览器中使用 vim 快捷键跳转和移动 :star:</li>
+  <li><a href="https://github.com/glacambre/firenvim">firenvim</a> : 在浏览器的输入框中使用 vim 输入</li>
+  <li><a href="https://github.com/qutebrowser/qutebrowser">qutebrowser</a> : 基于 Python 和 Qt 构建的 vim 快捷键的浏览器</li>
+  <li><a href="https://github.com/helix-editor/helix">helix</a> : 和 neovim 类似，号称更加 modern 的编辑器</li>
+  <li><a href="https://github.com/erikw/vim-keybindings-everywhere-the-ultimate-list">vim-keybindings-everywhere-the-ultimate-list</a> : 在其他程序中使用 vim 的键位映射。</li>
+  <li><a href="https://github.com/nyoom-engineering/nyoom.nvim">nyoom.nvim</a> : 纯 fennel nvim 配置</li>
+</ol>
+
+<script src="./2023 年 vim 的 C_C++ 配置 _ 工欲善其事,必先利其器_files/client.js" data-repo="Martins3/My-Linux-Config" data-repo-id="MDEwOlJlcG9zaXRvcnkyMTUwMDkyMDU=" data-category="General" data-category-id="MDE4OkRpc2N1c3Npb25DYXRlZ29yeTMyODc0NjA5" data-mapping="pathname" data-reactions-enabled="1" data-emit-metadata="0" data-input-position="bottom" data-theme="light" data-lang="en" crossorigin="anonymous" async="">
+</script><div class="giscus"><iframe class="giscus-frame" title="Comments" scrolling="no" allow="clipboard-write" src="./2023 年 vim 的 C_C++ 配置 _ 工欲善其事,必先利其器_files/widget.html" style=""></iframe></div>
+
+<p>本站所有文章转发 <strong>CSDN</strong> 将按侵权追究法律责任，其它情况随意。</p>
+<div class="footnotes" role="doc-endnotes">
+  <ol>
+    <li id="fn:2" role="doc-endnote">
+      <p><a href="https://lemire.me/blog/2016/06/21/i-do-not-use-a-debugger/">I do not use a debugger</a>&nbsp;<a href="https://martins3.github.io/My-Linux-Config/docs/nvim.html#fnref:2" class="reversefootnote" role="doc-backlink">↩</a></p>
+    </li>
+  </ol>
+</div>
+
+
+      <footer class="site-footer">
+        
+          <span class="site-footer-owner"><a href="https://github.com/Martins3/My-Linux-Config">My-Linux-Config</a> is maintained by <a href="https://github.com/Martins3">Martins3</a>.</span>
+        
+        <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com/">GitHub Pages</a>.</span>
+      </footer>
+    </main>
+  
+
+<iframe scrolling="no" frameborder="0" allowtransparency="true" src="./2023 年 vim 的 C_C++ 配置 _ 工欲善其事,必先利其器_files/widget_iframe.2f70fb173b9000da126c79afe2098f02.html" title="Twitter settings iframe" style="display: none;"></iframe><iframe id="rufous-sandbox" scrolling="no" frameborder="0" allowtransparency="true" allowfullscreen="true" style="position: absolute; visibility: hidden; display: none; width: 0px; height: 0px; padding: 0px; border: none;" title="Twitter analytics iframe" src="./2023 年 vim 的 C_C++ 配置 _ 工欲善其事,必先利其器_files/saved_resource.html"></iframe></body></html>
